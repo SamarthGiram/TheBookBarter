@@ -1,0 +1,76 @@
+### User Authentication
+
+# Register User 1
+POST http://localhost:5000/api/auth/register
+Content-Type: application/json
+
+{
+  "name": "Jane Doe",
+  "email": "jane@example.com",
+  "password": "password123",
+  "phone": "9998887776",
+  "location": "Delhi"
+}
+
+###
+
+# Login
+# @name login
+POST http://localhost:5000/api/auth/login
+Content-Type: application/json
+
+{
+  "email": "jane@example.com",
+  "password": "password123"
+}
+
+###
+# Extract token from login response and use it below:
+@token = {{login.response.body.token}}
+
+### Payments
+
+# Create Deposit Order
+POST http://localhost:5000/api/payment/create-order
+Authorization: Bearer {{token}}
+
+###
+
+### Books
+
+# Get All Books
+GET http://localhost:5000/api/books?city=Pune&genre=Self-Help
+
+###
+
+# List a New Book
+POST http://localhost:5000/api/books
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "title": "Clean Code",
+  "author": "Robert C. Martin",
+  "genre": "Non-Fiction",
+  "mrp": "850",
+  "condition": "Like New",
+  "location": "Delhi",
+  "images": ["https://example.com/clean-code.jpg"]
+}
+
+### Exchanges
+
+# Request a Book
+POST http://localhost:5000/api/exchanges/request
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "bookId": "REPLACE_WITH_BOOK_ID"
+}
+
+###
+
+# Get My Exchanges
+GET http://localhost:5000/api/exchanges/me
+Authorization: Bearer {{token}}

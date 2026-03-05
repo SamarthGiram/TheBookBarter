@@ -1,0 +1,25 @@
+[build]
+  command   = "npm run build"
+  functions = "netlify/functions"
+
+[build.environment]
+  NODE_VERSION = "20"
+
+# Required environment variables – set these in the Netlify dashboard:
+# DATABASE_URL
+# JWT_SECRET
+# RAZORPAY_KEY_ID
+# RAZORPAY_KEY_SECRET
+# FRONTEND_URL
+
+# Rewrite all /api/* requests to the Express serverless function
+[[redirects]]
+  from   = "/api/*"
+  to     = "/.netlify/functions/api/:splat"
+  status = 200
+
+# Health check shortcut
+[[redirects]]
+  from   = "/"
+  to     = "/.netlify/functions/api/api/health"
+  status = 200

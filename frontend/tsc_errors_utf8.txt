@@ -1,0 +1,5 @@
+﻿src/app/deposit/page.tsx(54,36): error TS2339: Property 'phone' does not exist on type 'User'.
+src/lib/api.ts(2,21): error TS7016: Could not find a declaration file for module 'js-cookie'. 'D:/Woking/TheBookBarter WebApp/frontend/node_modules/js-cookie/dist/js.cookie.mjs' implicitly has an 'any' type.
+  Try `npm i --save-dev @types/js-cookie` if it exists or add a new declaration (.d.ts) file containing `declare module 'js-cookie';`
+src/store/authStore.ts(2,21): error TS7016: Could not find a declaration file for module 'js-cookie'. 'D:/Woking/TheBookBarter WebApp/frontend/node_modules/js-cookie/dist/js.cookie.mjs' implicitly has an 'any' type.
+  Try `npm i --save-dev @types/js-cookie` if it exists or add a new declaration (.d.ts) file containing `declare module 'js-cookie';`
