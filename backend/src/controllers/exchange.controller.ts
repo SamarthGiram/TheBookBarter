@@ -62,7 +62,7 @@ export const requestExchange = async (req: AuthRequest, res: Response): Promise<
 export const updateExchangeStatus = async (req: AuthRequest, res: Response): Promise<void> => {
     try {
         const userId = req.user?.id;
-        const { id } = req.params;
+        const id = req.params.id as string;
         const { status } = req.body;
 
         if (!userId || !status) {

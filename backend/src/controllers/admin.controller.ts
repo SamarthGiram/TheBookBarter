@@ -40,7 +40,7 @@ export const getAllBooks = async (req: AuthRequest, res: Response): Promise<void
 
 export const banUser = async (req: AuthRequest, res: Response): Promise<void> => {
     try {
-        const { id } = req.params;
+        const id = req.params.id as string;
 
         // Check if user exists
         const user = await prisma.user.findUnique({ where: { id } });
@@ -62,7 +62,7 @@ export const banUser = async (req: AuthRequest, res: Response): Promise<void> =>
 
 export const adminDeleteBook = async (req: AuthRequest, res: Response): Promise<void> => {
     try {
-        const { id } = req.params;
+        const id = req.params.id as string;
 
         const book = await prisma.book.findUnique({ where: { id } });
         if (!book) {

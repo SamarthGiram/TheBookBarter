@@ -32,7 +32,7 @@ export const getBooks = async (req: Request, res: Response): Promise<void> => {
 
 export const getBookById = async (req: Request, res: Response): Promise<void> => {
     try {
-        const { id } = req.params;
+        const id = req.params.id as string;
         const book = await prisma.book.findUnique({
             where: { id },
             include: {
@@ -93,7 +93,7 @@ export const createBook = async (req: AuthRequest, res: Response): Promise<void>
 export const updateBook = async (req: AuthRequest, res: Response): Promise<void> => {
     try {
         const userId = req.user?.id;
-        const { id } = req.params;
+        const id = req.params.id as string;
 
         if (!userId) {
             res.status(401).json({ error: 'Unauthorized' });
@@ -137,7 +137,7 @@ export const updateBook = async (req: AuthRequest, res: Response): Promise<void>
 export const deleteBook = async (req: AuthRequest, res: Response): Promise<void> => {
     try {
         const userId = req.user?.id;
-        const { id } = req.params;
+        const id = req.params.id as string;
 
         if (!userId) {
             res.status(401).json({ error: 'Unauthorized' });
