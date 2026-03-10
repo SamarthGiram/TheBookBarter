@@ -23,46 +23,14 @@ export default function DepositPage() {
     const handlePayment = async () => {
         setIsLoading(true);
         try {
-            // Create order
-            const { data: order } = await api.post("/payment/create-order");
+            // Using logic for dummy payment for now
+            await api.post("/payment/dummy");
 
-            // Razorpay options
-            const options = {
-                key: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID || "test_key", // Replace with real key id
-                amount: order.amount,
-                currency: order.currency,
-                name: "TheBookBarter",
-                description: "Security Deposit",
-                order_id: order.orderId,
-                handler: async function (response: any) {
-                    try {
-                        await api.post("/payment/verify", {
-                            razorpay_order_id: response.razorpay_order_id,
-                            razorpay_payment_id: response.razorpay_payment_id,
-                            razorpay_signature: response.razorpay_signature,
-                        });
-                        updateUser({ depositPaid: true });
-                        toast.success("Deposit paid successfully! Welcome aboard.");
-                        router.push("/dashboard");
-                    } catch (err) {
-                        toast.error("Payment verification failed.");
-                    }
-                },
-                prefill: {
-                    name: user?.name,
-                    email: user?.email,
-                    contact: user?.phone,
-                },
-                theme: {
-                    color: "#16a34a",
-                },
-            };
-
-            const rzp = new (window as any).Razorpay(options);
-            rzp.open();
-
+            updateUser({ depositPaid: true });
+            toast.success("Security deposit simulated successfully! Welcome aboard.");
+            router.push("/dashboard");
         } catch (error) {
-            toast.error("Failed to initialize payment.");
+            toast.error("Failed to process payment simulation.");
         } finally {
             setIsLoading(false);
         }
@@ -91,7 +59,7 @@ export default function DepositPage() {
                     disabled={isLoading}
                     className="btn-primary w-full text-lg py-3"
                 >
-                    {isLoading ? "Processing..." : "Pay ₹500 Now"}
+                    {isLoading ? "Processing..." : "Simulate ₹500 Deposit"}
                 </button>
 
                 <p className="mt-4 text-xs text-gray-500">

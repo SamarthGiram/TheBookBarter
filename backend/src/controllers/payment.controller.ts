@@ -76,3 +76,31 @@ export const verifyPayment = async (req: AuthRequest, res: Response): Promise<vo
         res.status(500).json({ error: 'Payment verification failed' });
     }
 };
+
+export const dummyPayment = async (req: AuthRequest, res: Response): Promise<void> => {
+    try {
+        const userId = req.user?.id;
+
+        if (!userId) {
+            res.status(401).json({ error: 'Unauthorized' });
+            return;
+        }
+
+        const user = await prisma.user.findUnique({ where: { id: userId } });
+        if (user?.depositPaid) {
+            res.status(400).json({ error: 'Deposit already paid' });
+            return;
+        }
+
+        // Dummy simulate
+        await prisma.user.update({
+            where: { id: userId },
+            data: { depositPaid: true },
+        });
+
+        res.status(200).json({ message: 'Dummy payment verified successfully and deposit updated.' });
+    } catch (error) {
+        console.error('Dummy Payment Error:', error);
+        res.status(500).json({ error: 'Dummy payment failed' });
+    }
+};

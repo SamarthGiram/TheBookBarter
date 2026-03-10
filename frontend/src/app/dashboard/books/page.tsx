@@ -62,43 +62,81 @@ export default function MyBooks() {
                     <Link href="/dashboard/books/add" className="btn-primary">Listing Your First Book</Link>
                 </div>
             ) : (
-                <div className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
-                    <table className="w-full text-left border-collapse">
-                        <thead>
-                            <tr className="bg-gray-50 border-b border-gray-100">
-                                <th className="p-4 font-medium text-gray-600">Title</th>
-                                <th className="p-4 font-medium text-gray-600">Condition</th>
-                                <th className="p-4 font-medium text-gray-600">Value</th>
-                                <th className="p-4 font-medium text-gray-600">Status</th>
-                                <th className="p-4 font-medium text-gray-600 text-right">Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody className="divide-y divide-gray-100">
-                            {books.map((book) => (
-                                <tr key={book.id} className="hover:bg-gray-50 transition-colors">
-                                    <td className="p-4 font-medium text-gray-900">{book.title}</td>
-                                    <td className="p-4 text-gray-600">{book.condition}</td>
-                                    <td className="p-4 font-bold text-yellow-600">{book.coinValue} Coins</td>
-                                    <td className="p-4">
-                                        <span className={`px-2 py-1 rounded-full text-xs font-medium ${book.status === 'Available' ? 'bg-green-100 text-green-700' :
-                                                book.status === 'Requested' ? 'bg-blue-100 text-blue-700' :
-                                                    'bg-gray-100 text-gray-700'
+                <div>
+                    {/* Mobile: Card list */}
+                    <div className="md:hidden space-y-3">
+                        {books.map((book) => (
+                            <div key={book.id} className="bg-white rounded-xl border border-gray-100 shadow-sm p-4 flex items-start gap-3">
+                                <div className="flex-grow min-w-0">
+                                    <div className="flex items-center gap-2 mb-1 flex-wrap">
+                                        <span className={`px-2 py-0.5 rounded-full text-xs font-medium ${book.status === 'Available' ? 'bg-green-100 text-green-700' :
+                                            book.status === 'Requested' ? 'bg-blue-100 text-blue-700' :
+                                                'bg-gray-100 text-gray-700'
                                             }`}>
                                             {book.status}
                                         </span>
-                                    </td>
-                                    <td className="p-4 flex justify-end gap-2">
-                                        <button onClick={() => toast.error("Edit not implemented yet in MVP")} className="p-2 text-gray-400 hover:text-primary-600 hover:bg-primary-50 rounded-lg transition-colors">
-                                            <Edit size={18} />
-                                        </button>
-                                        <button onClick={() => handleDelete(book.id)} className="p-2 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded-lg transition-colors">
-                                            <Trash2 size={18} />
-                                        </button>
-                                    </td>
+                                        <span className="text-xs text-gray-400">{book.condition}</span>
+                                    </div>
+                                    <p className="font-bold text-gray-900 text-sm leading-snug line-clamp-1">{book.title}</p>
+                                    <p className="text-xs text-yellow-600 font-semibold mt-1">{book.coinValue} Coins</p>
+                                </div>
+                                <div className="flex gap-1 flex-shrink-0 mt-1">
+                                    <button
+                                        onClick={() => toast.error("Edit not implemented yet in MVP")}
+                                        className="p-2 text-gray-400 hover:text-primary-600 hover:bg-primary-50 rounded-lg transition-colors"
+                                    >
+                                        <Edit size={17} />
+                                    </button>
+                                    <button
+                                        onClick={() => handleDelete(book.id)}
+                                        className="p-2 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded-lg transition-colors"
+                                    >
+                                        <Trash2 size={17} />
+                                    </button>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+
+                    {/* Desktop: Table */}
+                    <div className="hidden md:block bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
+                        <table className="w-full text-left border-collapse">
+                            <thead>
+                                <tr className="bg-gray-50 border-b border-gray-100">
+                                    <th className="p-4 font-medium text-gray-600">Title</th>
+                                    <th className="p-4 font-medium text-gray-600">Condition</th>
+                                    <th className="p-4 font-medium text-gray-600">Value</th>
+                                    <th className="p-4 font-medium text-gray-600">Status</th>
+                                    <th className="p-4 font-medium text-gray-600 text-right">Actions</th>
                                 </tr>
-                            ))}
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody className="divide-y divide-gray-100">
+                                {books.map((book) => (
+                                    <tr key={book.id} className="hover:bg-gray-50 transition-colors">
+                                        <td className="p-4 font-medium text-gray-900">{book.title}</td>
+                                        <td className="p-4 text-gray-600">{book.condition}</td>
+                                        <td className="p-4 font-bold text-yellow-600">{book.coinValue} Coins</td>
+                                        <td className="p-4">
+                                            <span className={`px-2 py-1 rounded-full text-xs font-medium ${book.status === 'Available' ? 'bg-green-100 text-green-700' :
+                                                book.status === 'Requested' ? 'bg-blue-100 text-blue-700' :
+                                                    'bg-gray-100 text-gray-700'
+                                                }`}>
+                                                {book.status}
+                                            </span>
+                                        </td>
+                                        <td className="p-4 flex justify-end gap-2">
+                                            <button onClick={() => toast.error("Edit not implemented yet in MVP")} className="p-2 text-gray-400 hover:text-primary-600 hover:bg-primary-50 rounded-lg transition-colors">
+                                                <Edit size={18} />
+                                            </button>
+                                            <button onClick={() => handleDelete(book.id)} className="p-2 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded-lg transition-colors">
+                                                <Trash2 size={18} />
+                                            </button>
+                                        </td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             )}
         </div>
