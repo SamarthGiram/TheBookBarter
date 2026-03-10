@@ -35,9 +35,9 @@ export default function DashboardOverview() {
         <div className="space-y-6">
             <h1 className="text-2xl font-bold text-gray-900">Welcome back, {user?.name.split(' ')[0]}</h1>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
                 {/* Wallet Card */}
-                <div className="bg-gradient-to-br from-yellow-50 to-orange-50 p-6 rounded-xl border border-yellow-100 shadow-sm relative overflow-hidden">
+                <div className="col-span-2 md:col-span-1 bg-gradient-to-br from-yellow-50 to-orange-50 p-6 rounded-xl border border-yellow-100 shadow-sm relative overflow-hidden">
                     <div className="absolute -right-4 -bottom-4 opacity-10"><Wallet size={120} /></div>
                     <div className="relative z-10">
                         <h3 className="text-yellow-800 font-medium mb-1">Magic Coins</h3>

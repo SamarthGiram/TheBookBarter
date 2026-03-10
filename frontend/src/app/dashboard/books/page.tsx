@@ -63,35 +63,31 @@ export default function MyBooks() {
                 </div>
             ) : (
                 <div>
-                    {/* Mobile: Card list */}
-                    <div className="md:hidden space-y-3">
+                    {/* Mobile: 2-col card grid */}
+                    <div className="md:hidden grid grid-cols-2 gap-3">
                         {books.map((book) => (
-                            <div key={book.id} className="bg-white rounded-xl border border-gray-100 shadow-sm p-4 flex items-start gap-3">
-                                <div className="flex-grow min-w-0">
-                                    <div className="flex items-center gap-2 mb-1 flex-wrap">
-                                        <span className={`px-2 py-0.5 rounded-full text-xs font-medium ${book.status === 'Available' ? 'bg-green-100 text-green-700' :
-                                            book.status === 'Requested' ? 'bg-blue-100 text-blue-700' :
-                                                'bg-gray-100 text-gray-700'
-                                            }`}>
-                                            {book.status}
-                                        </span>
-                                        <span className="text-xs text-gray-400">{book.condition}</span>
-                                    </div>
-                                    <p className="font-bold text-gray-900 text-sm leading-snug line-clamp-1">{book.title}</p>
-                                    <p className="text-xs text-yellow-600 font-semibold mt-1">{book.coinValue} Coins</p>
-                                </div>
-                                <div className="flex gap-1 flex-shrink-0 mt-1">
+                            <div key={book.id} className="bg-white rounded-xl border border-gray-100 shadow-sm p-3 flex flex-col">
+                                <span className={`self-start px-2 py-0.5 rounded-full text-xs font-medium mb-1 ${book.status === 'Available' ? 'bg-green-100 text-green-700' :
+                                    book.status === 'Requested' ? 'bg-blue-100 text-blue-700' :
+                                        'bg-gray-100 text-gray-700'
+                                    }`}>
+                                    {book.status}
+                                </span>
+                                <p className="font-bold text-gray-900 text-xs leading-snug line-clamp-2 mb-1">{book.title}</p>
+                                <p className="text-xs text-gray-400 mb-1">{book.condition}</p>
+                                <p className="text-xs text-yellow-600 font-semibold mb-2">{book.coinValue} Coins</p>
+                                <div className="flex gap-1 mt-auto justify-end">
                                     <button
                                         onClick={() => toast.error("Edit not implemented yet in MVP")}
-                                        className="p-2 text-gray-400 hover:text-primary-600 hover:bg-primary-50 rounded-lg transition-colors"
+                                        className="p-1.5 text-gray-400 hover:text-primary-600 hover:bg-primary-50 rounded-lg transition-colors"
                                     >
-                                        <Edit size={17} />
+                                        <Edit size={15} />
                                     </button>
                                     <button
                                         onClick={() => handleDelete(book.id)}
-                                        className="p-2 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded-lg transition-colors"
+                                        className="p-1.5 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded-lg transition-colors"
                                     >
-                                        <Trash2 size={17} />
+                                        <Trash2 size={15} />
                                     </button>
                                 </div>
                             </div>
