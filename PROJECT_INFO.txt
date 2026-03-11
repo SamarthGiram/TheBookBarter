@@ -1,0 +1,30 @@
+PROJECT NAME: TheBookBarter
+
+1. WHAT IS THIS PROJECT ABOUT?
+TheBookBarter is a community-driven web application designed to facilitate the exchange of physical books between readers. Instead of buying new books or letting old books gather dust on shelves, users can list books they have already read and exchange them with other members in their local community. 
+
+2. HOW DOES IT WORK?
+The platform uses a unique virtual currency called "Magic Coins".
+- When a user signs up, they pay a fully refundable ₹500 security deposit to ensure trust and authenticity within the platform.
+- Users list their old books on the marketplace.
+- The value of a book in "Magic Coins" is automatically calculated based on its original MRP (MRP ÷ 10 = Magic Coins).
+- When User A gives their book to User B through a local meetup, User A earns that book's Magic Coin value.
+- User A can then use their earned Magic Coins to request any other book they want to read from the marketplace.
+
+3. CORE FEATURES:
+- User Authentication & Verification: Secure JWT-based login with an initial ₹500 refundable security deposit (simulated in development) to filter out fake accounts.
+- Magic Coin Wallet: A localized economy system where users earn coins by sharing books and spend coins by requesting books.
+- Smart Marketplace: Users can browse, search, and filter available books by genre, distance, and condition.
+- Request Flow & Meetups: Users can send swap requests. Once accepted, they coordinate a real-world local meetup to physically exchange the book.
+- Peer Ratings: After an exchange, both parties rate each other to maintain a high-quality, friendly community.
+
+4. TECHNOLOGY STACK:
+- Frontend: Next.js (App Router), React, Tailwind CSS, Zustand (State Management), Lucide Icons. Designed with premium glassmorphism and mobile-first responsiveness.
+- Backend: Node.js, Express.js, TypeScript.
+- Database: PostgreSQL, managed via Prisma ORM.
+- Deployment readiness: Configured for deployment on platforms like Vercel/Render.
+
+5. WHY WAS IT BUILT?
+- To be Eco-Friendly: Giving books a second life reduces paper waste.
+- To Save Money: It removes the cost barrier of reading; you simply trade what you already own.
+- To Build Local Connections: It fosters real-world communities and friendships among book lovers through safe, local meetups.
